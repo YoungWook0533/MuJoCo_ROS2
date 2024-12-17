@@ -1,0 +1,200 @@
+ <mujocoinclude>
+  <compiler angle="radian" meshdir="meshes/" autolimits="true"/>
+  <size njmax="500" nconmax="100" />
+  <visual>
+    <global offwidth="3024" offheight="1680" />
+    <quality shadowsize="4096" offsamples="8" />
+    <map force="0.1" fogend="5" />
+  </visual>
+  <default>
+    <default class="panda">
+      <material specular="0.5" shininess="0.25"/>
+      <joint armature="1.0" damping="1" axis="0 0 1"/>
+      <default class="finger">
+        <joint axis="0 1 0" type="slide" range="0 0.04"/>
+      </default>
+
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/> 
+      </default>
+
+      
+      <default class="collision">
+        <geom type="mesh" group="3"/>
+        <default class="fingertip_pad_collision_1">
+          <geom type="box" size="0.0085 0.004 0.0085" pos="0 0.0055 0.0445"/>
+        </default>
+        <default class="fingertip_pad_collision_2">
+          <geom type="box" size="0.003 0.002 0.003" pos="0.0055 0.002 0.05"/>
+        </default>
+        <default class="fingertip_pad_collision_3">
+          <geom type="box" size="0.003 0.002 0.003" pos="-0.0055 0.002 0.05"/>
+        </default>
+        <default class="fingertip_pad_collision_4">
+          <geom type="box" size="0.003 0.002 0.0035" pos="0.0055 0.002 0.0395"/>
+        </default>
+        <default class="fingertip_pad_collision_5">
+          <geom type="box" size="0.003 0.002 0.0035" pos="-0.0055 0.002 0.0395"/>
+        </default>
+      </default>
+
+      <default class="FTsensor">
+        <site type="cylinder" size="0.005 0.005" group="4" rgba=".1 .1 .9 1"/>
+      </default>
+    </default>
+  
+
+  </default>
+
+  
+
+  <asset>
+
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+  
+
+    <!-- panda 231 -->
+    <material class="panda" name="white" rgba="1 1 1 1"/>
+    <material class="panda" name="off_white" rgba="0.901961 0.921569 0.929412 1"/>
+    <material class="panda" name="black" rgba="0.25 0.25 0.25 1"/>
+    <material class="panda" name="green" rgba="0 1 0 1"/>
+    <material class="panda" name="light_blue" rgba="0.039216 0.541176 0.780392 1"/>
+
+    <!-- <texture file="meshes/textures/light-wood.png" type="cube" name="light-wood" />
+    <texture file="meshes/textures/dark-wood.png" type="cube" name="dark-wood" />
+    <texture file="meshes/textures/brass-ambra.png" type="cube" name="metal" />
+    <material name="MatMetal" texture="metal" specular="1" shininess="0.3" rgba="0.9 0.9 0.9 1" />
+    <material name="MatDarkWood" texture="dark-wood" texrepeat="3 3" specular="0.4" shininess="0.1" />
+    <material name="MatLightWood" texture="light-wood" texrepeat="3 3" specular="0.4" shininess="0.1" /> -->
+  
+
+    
+    <!-- Collision meshes -->
+    <mesh name="link0_c" file="assets/link0.stl"/>
+    <mesh name="link1_c" file="assets/link1.stl"/>
+    <mesh name="link2_c" file="assets/link2.stl"/>
+    <mesh name="link3_c" file="assets/link3.stl"/>
+    <mesh name="link4_c" file="assets/link4.stl"/>
+    <mesh name="link5_c0" file="assets/link5_collision_0.obj"/>
+    <mesh name="link5_c1" file="assets/link5_collision_1.obj"/>
+    <mesh name="link5_c2" file="assets/link5_collision_2.obj"/>
+    <mesh name="link6_c" file="assets/link6.stl"/>
+    <mesh name="link7_c" file="assets/link7.stl"/>
+    <mesh name="hand_c" file="assets/hand.stl"/>
+
+    <!-- Visual meshes -->
+    <mesh file="assets/link0_0.obj"/>
+    <mesh file="assets/link0_1.obj"/>
+    <mesh file="assets/link0_2.obj"/>
+    <mesh file="assets/link0_3.obj"/>
+    <mesh file="assets/link0_4.obj"/>
+    <mesh file="assets/link0_5.obj"/>
+    <mesh file="assets/link0_7.obj"/>
+    <mesh file="assets/link0_8.obj"/>
+    <mesh file="assets/link0_9.obj"/>
+    <mesh file="assets/link0_10.obj"/>
+    <mesh file="assets/link0_11.obj"/>
+    <mesh file="assets/link1.obj"/>
+    <mesh file="assets/link2.obj"/>
+    <mesh file="assets/link3_0.obj"/>
+    <mesh file="assets/link3_1.obj"/>
+    <mesh file="assets/link3_2.obj"/>
+    <mesh file="assets/link3_3.obj"/>
+    <mesh file="assets/link4_0.obj"/>
+    <mesh file="assets/link4_1.obj"/>
+    <mesh file="assets/link4_2.obj"/>
+    <mesh file="assets/link4_3.obj"/>
+    <mesh file="assets/link5_0.obj"/>
+    <mesh file="assets/link5_1.obj"/>
+    <mesh file="assets/link5_2.obj"/>
+    <mesh file="assets/link6_0.obj"/>
+    <mesh file="assets/link6_1.obj"/>
+    <mesh file="assets/link6_2.obj"/>
+    <mesh file="assets/link6_3.obj"/>
+    <mesh file="assets/link6_4.obj"/>
+    <mesh file="assets/link6_5.obj"/>
+    <mesh file="assets/link6_6.obj"/>
+    <mesh file="assets/link6_7.obj"/>
+    <mesh file="assets/link6_8.obj"/>
+    <mesh file="assets/link6_9.obj"/>
+    <mesh file="assets/link6_10.obj"/>
+    <mesh file="assets/link6_11.obj"/>
+    <mesh file="assets/link6_12.obj"/>
+    <mesh file="assets/link6_13.obj"/>
+    <mesh file="assets/link6_14.obj"/>
+    <mesh file="assets/link6_15.obj"/>
+    <mesh file="assets/link6_16.obj"/>
+    <mesh file="assets/link7_0.obj"/>
+    <mesh file="assets/link7_1.obj"/>
+    <mesh file="assets/link7_2.obj"/>
+    <mesh file="assets/link7_3.obj"/>
+    <mesh file="assets/link7_4.obj"/>
+    <mesh file="assets/link7_5.obj"/>
+    <mesh file="assets/link7_6.obj"/>
+    <mesh file="assets/link7_7.obj"/>
+    <mesh file="assets/hand_0.obj"/>
+    <mesh file="assets/hand_1.obj"/>
+    <mesh file="assets/hand_2.obj"/>
+    <mesh file="assets/hand_3.obj"/>
+    <mesh file="assets/hand_4.obj"/>
+    <mesh file="assets/finger_0.obj"/>
+    <mesh file="assets/finger_1.obj"/>
+
+    <mesh name="summit_xls_chassis" file="assets/summit_xls_chassis.stl"/>
+
+
+  </asset>
+
+
+
+  <contact>
+      <!-- <exclude name="valve_contact" body1="valve_base" body2="valve_handle"/>
+      <exclude name="handle_contact" body1="handle_base" body2="handle_handle"/>
+      <exclude name="gripper_contact" body1="left_finger" body2="right_finger"/> -->
+
+      <!-- <exclude name="panda_check_targetpos0" body1="left_finger" body2="handle_base"/>
+      <exclude name="panda_check_targetpos1" body1="right_finger" body2="handle_base"/>
+      <exclude name="panda_check_targetpos2" body1="link7" body2="handle_base"/>
+      <exclude name="panda_check_targetpos3" body1="link6" body2="handle_base"/> 
+      <exclude body1="link5" body2="handle_base"/> 
+      <exclude body1="link5" body2="handle_handle"/> 
+      <exclude body1="link4" body2="handle_base"/> 
+      <exclude body1="link4" body2="handle_base"/> 
+      <exclude name="panda_check_targetpos4" body1="left_finger" body2="handle_handle"/>
+      <exclude name="panda_check_targetpos5" body1="right_finger" body2="handle_handle"/>
+      <exclude name="panda_check_targetpos6" body1="link7" body2="handle_handle"/>
+      <exclude name="panda_check_targetpos7" body1="link6" body2="handle_handle"/>
+      <exclude name="panda_check_targetpos8" body1="hand" body2="handle_base"/>
+      <exclude name="panda_check_targetpos9" body1="hand" body2="handle_handle"/> 
+      <exclude name="panda_check_targetpos10" body1="hand" body2="handle_handle"/>
+      <exclude name="panda_check_targetpos11" body1="hand" body2="handle_handle"/>
+
+      <exclude name="check_targetpos00" body1="hand" body2="valve_base"/>
+      <exclude name="check_targetpos0" body1="left_finger" body2="valve_base"/>
+      <exclude name="check_targetpos1" body1="right_finger" body2="valve_base"/>
+      <exclude name="check_targetpos2" body1="link7" body2="valve_base"/>
+      <exclude name="check_targetpos3" body1="link6" body2="valve_base"/> 
+      <exclude name="check_targetpos4" body1="hand" body2="valve_handle"/>
+      <exclude name="check_targetpos44" body1="left_finger" body2="valve_handle"/>
+      <exclude name="check_targetpos5" body1="right_finger" body2="valve_handle"/>
+      <exclude name="check_targetpos6" body1="link7" body2="valve_handle"/>
+      <exclude name="check_targetpos7" body1="link6" body2="valve_handle"/> -->
+  </contact>
+
+  <sensor>
+      <force name="force_L" site="FTsensor_L"/>
+      <torque name="torque_L" site="FTsensor_L"/>
+      <!-- <rangefinder name="lidar_sensor" site="lidar_site"/> -->
+      <!-- <force name="force_R" site="FTsensor_R"/> -->
+      <!-- <torque name="torque_R" site="FTsensor_R"/> -->
+  </sensor>
+
+  <!-- <keyframe>
+      <key name="initial" time = "0", qpos="0.374 -1.02 0.245 -1.51 0.0102 0.655  0.3 0.04 0.04">
+  </keyframe> -->
+
+  
+
+ </mujocoinclude>

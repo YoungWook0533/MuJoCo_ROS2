@@ -1,0 +1,56 @@
+<mujoco model='mobile_fr3'>
+    <!-- ======= WORLD ======= -->
+    <!-- <option timestep = '0.001'/> -->
+    <option integrator="implicit" timestep="0.001" />
+
+
+    <size njmax="500" nconmax="100" />
+    
+
+
+    <worldbody>
+        <light directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+        <camera name="fixed" pos="-0.3 0 1.5" quat="0.92387953 0 -0.38268343 0" />
+        <geom size="10 10 .05" type="plane" material="grid" condim="3"/> 
+        <light directional="false" diffuse=".8 .8 .8" specular="0.3 0.3 0.3" pos="1 1 3" dir="-1 -1 -3"/>
+        
+
+        <body name="fr3" pos="0 0 0">
+            <include file="mjinclude_mobile_fr3.xml"/>
+        </body>
+
+
+        <!-- goal설정: joint type "free"로 설정-->
+        <!-- <body name="link7_t" pos="0.5 0.2 1.2" quat="0 2 0 0" gravcomp="1.0">
+            <inertial mass="0.0000000001" pos="1.0517e-2 -4.252e-3 6.1597e-2" diaginertia="0.0000000001 0.0000000001 0.0000000001"/>
+            <joint type="free" stiffness="0" damping="0" frictionloss="0" armature="0" />
+            <geom mesh="link7_0" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="link7_1" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_2" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_3" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_4" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_5" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_6" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="link7_7" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="hand_0" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="hand_1" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="hand_2" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="hand_3" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="hand_4" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="finger_0" pos="0 0 0.1644" quat="0.9238795 0 0 -0.3826834" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="finger_1" pos="0 0 0.1644" quat="0.9238795 0 0 -0.3826834" rgba="0.0 0.0 1.0 1" class="visual"/>
+            <geom mesh="finger_0" pos="0 0 0.1644" quat="0.38268342 0 0 0.92387954" rgba="1.0 0.0 0.0 1" class="visual"/>
+            <geom mesh="finger_1" pos="0 0 0.1644" quat="0.38268342 0 0 0.92387954" rgba="0.0 0.0 1.0 1" class="visual"/>
+        </body> -->
+        <!-- goal설정: joint type "free"로 설정-->
+        
+    
+
+    </worldbody>
+
+    <include file='mobile_fr3_assets.xml'/>
+    <include file='mobile_fr3_actuators.xml'/>
+    <!-- <include file="door_assets.xml"/> -->
+    
+
+</mujoco>

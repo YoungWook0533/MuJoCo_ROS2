@@ -1,0 +1,40 @@
+<mujoco model='Panda_valve'>
+    <!-- ======= WORLD ======= -->
+    <option timestep = '0.001'/>
+
+    <!-- <visual>
+        <map force = 0.1/>
+    </visual> -->
+    <size njmax="500" nconmax="100" />
+    
+    <!-- <default>   
+        <default class="cls">
+                <geom group="1" rgba="0.79216 0.81961 0.93333 0.5"/>
+        </default>
+    </default> -->
+
+    <worldbody>
+        <light directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+        <camera name="fixed" pos="-0.3 0 1.5" quat="0.92387953 0 -0.38268343 0" />
+        <geom size="10 10 .05" type="plane" material="grid" condim="3"/>
+        <light directional="false" diffuse=".8 .8 .8" specular="0.3 0.3 0.3" pos="1 1 3" dir="-1 -1 -3"/>
+        
+
+        <body name="fr3" pos="0 0 0">
+            <include file="mjinclude_dual_fr3.xml"/>
+        </body>
+
+        <body name="door" pos="0 2 0">
+            <include file="mjinclude_door.xml"/>
+        </body>
+
+
+
+    </worldbody>
+
+    <include file='dual_fr3_assets.xml'/>
+    <include file='dual_fr3_actuators.xml'/>
+    <include file="door_assets.xml"/>
+    
+
+</mujoco>

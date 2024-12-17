@@ -1,0 +1,18 @@
+
+<!-- from https://github.com/vikashplus/mj_envs/tree/master/mj_envs/hand_manipulation_suite/assets -->
+<!-- Information about door can be found in this paper: https://arxiv.org/pdf/1709.10087.pdf -->
+<!-- <compiler angle="radian" meshdir="meshes/textures" autolimits="true"/> -->
+
+<mujocoinclude >
+  <compiler angle="radian" meshdir="meshes/" autolimits="true"/>
+    <asset>
+      <texture file="meshes/textures/light-wood.png" type="cube" name="light-wood" />
+      <texture file="meshes/textures/dark-wood.png" type="cube" name="dark-wood" />
+      <texture file="meshes/textures/brass-ambra.png" type="cube" name="metal" />
+      <material name="MatMetal" texture="metal" specular="1" shininess="0.3" rgba="0.9 0.9 0.9 1" />
+      <material name="MatDarkWood" texture="dark-wood" texrepeat="3 3" specular="0.4" shininess="0.1" />
+      <material name="MatLightWood" texture="light-wood" texrepeat="3 3" specular="0.4" shininess="0.1" />
+    </asset>
+</mujocoinclude>
+
+

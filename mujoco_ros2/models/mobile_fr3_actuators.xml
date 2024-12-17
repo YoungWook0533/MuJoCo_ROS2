@@ -1,0 +1,55 @@
+ <mujocoinclude>
+  <compiler angle="radian" meshdir="meshes/" autolimits="true"/>
+
+  
+  
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_joint1" coef="0.5"/>
+      <joint joint="finger_joint2" coef="0.5"/>
+    </fixed>
+    <!-- <fixed name="split_R">
+      <joint joint="finger_joint1_R" coef="0.5"/>
+      <joint joint="finger_joint2_R" coef="0.5"/>
+    </fixed> -->
+  </tendon>
+
+  <equality>
+    <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <!-- <joint joint1="finger_joint1_R" joint2="finger_joint2_R" solimp="0.95 0.99 0.001" solref="0.005 1"/> -->
+  </equality>
+
+
+  <actuator>
+<!--<position ctrllimited="true" ctrlrange="-10.0 10.0" joint="base_x_slide_joint" kp="18000" name="base_x_slide_joint" user="1"/>
+    <position ctrllimited="true" ctrlrange="-10.0 10.0" joint="base_y_slide_joint" kp="18000" name="base_y_slide_joint" user="1"/>
+    <position ctrllimited="true" ctrlrange="-0.57 0.57" kp="20000" joint="base_z_hinge_joint" name="base_z_hinge_joint" user="1"/> -->
+
+    <velocity ctrllimited="true" ctrlrange="-2.5 2.5" joint="base_x_slide_joint" kv="20000" name="base_x_slide_joint" user="1" gear="1 0 0 0 0 0"/>
+    <velocity ctrllimited="true" ctrlrange="-2.5 2.5" joint="base_y_slide_joint" kv="20000" name="base_y_slide_joint" user="1" gear="1 0 0 0 0 0"/>
+    <velocity ctrllimited="true" ctrlrange="-2.5 2.5" joint="base_z_hinge_joint" kv="20000" name="base_z_hinge_joint" user="1" gear="1 0 0 0 0 0"/>
+
+    
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint1" name="joint1"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint2" name="joint2"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint3" name="joint3"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint4" name="joint4"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint5" name="joint5"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint6" name="joint6"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint7" name="joint7"/>
+
+    <!-- <motor ctrllimited="true" ctrlrange="-255 255"  tendon="split" name="split"/> -->
+
+    <!-- <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint1_R" name="actuator1_R"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint2_R" name="actuator2_R"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint3_R" name="actuator3_R"/>
+    <motor ctrllimited="true" ctrlrange="-87.0 87.0" joint="joint4_R" name="actuator4_R"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint5_R" name="actuator5_R"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint6_R" name="actuator6_R"/>
+    <motor ctrllimited="true" ctrlrange="-12.0 12.0" joint="joint7_R" name="actuator7_R"/>
+    <motor ctrllimited="true" tendon="split_R" forcerange="-100 100" ctrlrange="-255 255" name="actuator8_R"/>
+     -->
+  </actuator>
+
+
+ </mujocoinclude>
