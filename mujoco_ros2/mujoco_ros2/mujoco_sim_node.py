@@ -82,7 +82,7 @@ class MujocoSimNode(Node):
                 self.update_joints()
 
                 # Publish joint states
-                self.joint_state_publisher(self.data, self.pub_jointstate)
+                self.joint_state_publisher(self.pub_jointstate)
 
                 # Step simulation if not paused
                 if not self.paused:
@@ -104,15 +104,17 @@ class MujocoSimNode(Node):
             else:
                 self.get_logger().warn(f"Actuator not found for joint {joint_name}.")
 
-    def joint_state_publisher(self, data, pub_jointstate):
+    def joint_state_publisher(self, pub_jointstate):
         """Publish joint states."""
         joint_msg = JointState()
+        joint_msg.header.stamp = self.get_clock().now().to_msg()
         joint_msg.name = joint
         joint_msg.position = [self.data.qpos[self.model.jnt_qposadr[joint.index(j)]] for j in joint]
         joint_msg.velocity = [self.data.qvel[self.model.jnt_dofadr[joint.index(j)]] for j in joint]
         joint_msg.effort = [self.data.qfrc_smooth[self.model.jnt_dofadr[joint.index(j)]] for j in joint]
 
         pub_jointstate.publish(joint_msg)
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -131,4 +133,4 @@ if __name__ == '__main__':
     main()
 
 
-# ros2 topic pub /joint_commands std_msgs/msg/Float64MultiArray "data: [0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+# ros2 topic pub /joint_commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.2, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]"

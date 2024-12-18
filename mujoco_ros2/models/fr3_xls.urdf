@@ -11,31 +11,31 @@
 
 
   <!-- BASE_LINK -->
-  <link name="v_x_link" />
-  <joint name="v_x_joint" type="prismatic">
+  <link name="base_x_slide_link" />
+  <joint name="base_x_slide_joint" type="prismatic">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="v_x_link"/>
-      <child link="v_y_link"/>
+      <parent link="base_x_slide_link"/>
+      <child link="base_y_slide_link"/>
       <axis xyz= "1 0 0"/>
       <limit effort="1000.0" lower="-10000.0" upper="-10000.0" velocity="10000.0"/>
   </joint>
-  <link name="v_y_link" />
-  <joint name="v_y_joint" type="prismatic">
+  <link name="base_y_slide_link" />
+  <joint name="base_y_slide_joint" type="prismatic">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="v_y_link"/>
-      <child link="v_t_link"/>
+      <parent link="base_y_slide_link"/>
+      <child link="base_z_hinge_link"/>
       <axis xyz= "0 1 0"/>
       <limit effort="1000.0" lower="-10000.0" upper="-10000.0" velocity="10000.0"/>
   </joint>
-  <link name="v_t_link" />
-  <joint name="v_t_joint" type="revolute">
+  <link name="base_z_hinge_link" />
+  <joint name="base_z_hinge_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="v_t_link"/>
-      <child link="summit_xl_base_link"/>
+      <parent link="base_z_hinge_link"/>
+      <child link="base"/>
       <axis rpy="0 0 0" xyz="0 0 1"/>
       <limit effort="1000.0" lower="-6.24" upper="6.24" velocity="10000.0"/>
   </joint>
-  <link name="summit_xl_base_link">
+  <link name="base">
     <inertial>
       <mass value="50.455"/>
       <origin xyz="0 0 0.127"/>
@@ -43,35 +43,29 @@
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.127"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/summit_xls_chassis.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/summit_xls_chassis.stl"/>
+      </geometry>
       <material name="black">
         <color rgba="0.0 0.0 0.0 1"/>
       </material>
     </visual>
     <collision>
       <origin rpy="0 0 0 " xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/summit_xls_chassis.dae"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/summit_xls_chassis.dae"/>
+      </geometry>
     </collision>
   </link>
-  <link name="summit_xl_base_footprint"/>
-  <joint name="summit_xl_base_footprint_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="summit_xl_base_link"/>
-    <child link="summit_xl_base_footprint"/>
-  </joint> 
 
 
   <!-- CHAPAS INOX TAPAS -->
   <link name="summit_xl_base_chapa">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.127"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/summit_xls_chapas_inox_tapas.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/summit_xls_chapas_inox_tapas.stl"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.5 0.5 0.5 1"/>
       </material>
@@ -79,16 +73,16 @@
   </link>
   <joint name="summit_xl_base_tapa_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.0 0 0.38062"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_chapa"/>
   </joint>
   <!-- LOGO ROBOTNIK IZQUIERDO -->
   <link name="summit_xl_base_logo_left">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/robotnik_logo_chasis.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/robotnik_logo_chasis.stl"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.5 0.5 0.5 1"/>
       </material>
@@ -96,16 +90,16 @@
   </link>
   <joint name="summit_xl_base_logo_left_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.0 0.28931 0.41762"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_logo_left"/>
   </joint>
   <!-- LOGO ROBOTNIK DERECHO -->
   <link name="summit_xl_base_logo_right">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/robotnik_logo_chasis.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/robotnik_logo_chasis.stl"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.5 0.5 0.5 1"/>
       </material>
@@ -113,16 +107,16 @@
   </link>
   <joint name="summit_xl_base_logo_right_joint" type="fixed">
     <origin rpy="0 0 3.141592653589793" xyz="0.0 -0.28931 0.41762"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_logo_right"/>
   </joint>
   <!-- LOGO ROBOTNIK FRONTAL -->
   <link name="summit_xl_base_logo_front">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/robotnik_logo_chasis.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/robotnik_logo_chasis.stl"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.5 0.5 0.5 1"/>
       </material>
@@ -130,16 +124,16 @@
   </link>
   <joint name="summit_xl_base_logo_front_joint" type="fixed">
     <origin rpy="0 0 -1.5707963267948966" xyz="0.345 0.0 0.127"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_logo_front"/>
   </joint>
   <!-- LOGO ROBOTNIK TRASERO -->
   <link name="summit_xl_base_logo_rear">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/bases/xls/robotnik_logo_chasis.stl"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/bases/xls/robotnik_logo_chasis.stl"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.5 0.5 0.5 1"/>
       </material>
@@ -147,7 +141,7 @@
   </link>
   <joint name="summit_xl_base_logo_rear_joint" type="fixed">
     <origin rpy="0 0 1.5707963267948966" xyz="-0.345 0.0 0.127"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_logo_rear"/>
   </joint>
   <!-- DOCKING CONTACT -->
@@ -155,11 +149,11 @@
     </link>
   <joint name="summit_xl_base_docking_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.35 0 0.217"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_base_docking_contact"/>
   </joint>
   <joint name="summit_xl_front_right_wheel_joint" type="fixed">
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_front_right_wheel_link"/>
     <origin rpy="0 0 0" xyz="0.2225 -0.2045 0.127"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -169,9 +163,9 @@
   <link name="summit_xl_front_right_wheel_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_2.dae"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.2 0.2 0.2 1"/>
       </material>
@@ -180,14 +174,14 @@
       <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
       <geometry>
         <!--sphere radius="${omni_wheel_radius}" /-->
-        <!--
-          <xacro:if value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae" />
+        
+          <!-- <xacro:if value="${reflect}">
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_1.dae" />
           </xacro:if>
           <xacro:unless value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae" />
-					</xacro:unless>
--->
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_2.dae" />
+					</xacro:unless> -->
+
         <cylinder length="0.087" radius="0.127"/>
         <!-- sphere radius="${omni_wheel_radius}"/-->
       </geometry>
@@ -217,7 +211,7 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="summit_xl_front_left_wheel_joint" type="fixed">
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_front_left_wheel_link"/>
     <origin rpy="0 0 0" xyz="0.2225 0.2045 0.127"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -227,9 +221,9 @@
   <link name="summit_xl_front_left_wheel_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_1.dae"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.2 0.2 0.2 1"/>
       </material>
@@ -238,14 +232,14 @@
       <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
       <geometry>
         <!--sphere radius="${omni_wheel_radius}" /-->
-        <!--
-          <xacro:if value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae" />
+        
+          <!-- <xacro:if value="${reflect}">
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_1.dae" />
           </xacro:if>
           <xacro:unless value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae" />
-					</xacro:unless>
--->
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_2.dae" />
+					</xacro:unless> -->
+
         <cylinder length="0.087" radius="0.127"/>
         <!-- sphere radius="${omni_wheel_radius}"/-->
       </geometry>
@@ -275,7 +269,7 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="summit_xl_back_left_wheel_joint" type="fixed">
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_back_left_wheel_link"/>
     <origin rpy="0 0 0" xyz="-0.2225 0.2045 0.127"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -285,9 +279,9 @@
   <link name="summit_xl_back_left_wheel_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_1.dae"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.2 0.2 0.2 1"/>
       </material>
@@ -296,14 +290,14 @@
       <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
       <geometry>
         <!--sphere radius="${omni_wheel_radius}" /-->
-        <!--
-          <xacro:if value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae" />
+        
+          <!-- <xacro:if value="${reflect}">
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_1.dae" />
           </xacro:if>
           <xacro:unless value="${reflect}">
-              <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae" />
-					</xacro:unless>
--->
+              <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_2.dae" />
+					</xacro:unless> -->
+
         <cylinder length="0.087" radius="0.127"/>
         <!-- sphere radius="${omni_wheel_radius}"/-->
       </geometry>
@@ -333,7 +327,7 @@
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <joint name="summit_xl_back_right_wheel_joint" type="fixed">
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_back_right_wheel_link"/>
     <origin rpy="0 0 0" xyz="-0.2225 -0.2045 0.127"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
@@ -343,9 +337,9 @@
   <link name="summit_xl_back_right_wheel_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <!-- <geometry>
-        <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae"/>
-      </geometry> -->
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/wheels/omni_wheel_2.dae"/>
+      </geometry>
       <material name="darkgrey">
         <color rgba="0.2 0.2 0.2 1"/>
       </material>
@@ -354,14 +348,14 @@
       <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
       <geometry>
         <!--sphere radius="${omni_wheel_radius}" /-->
-        <!--
-          <xacro:if value="${reflect}">
+        
+          <!-- <xacro:if value="${reflect}">
               <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_1.dae" />
           </xacro:if>
           <xacro:unless value="${reflect}">
               <mesh filename="package://summit_xl_description/meshes/wheels/omni_wheel_2.dae" />
-					</xacro:unless>
--->
+					</xacro:unless> -->
+
         <cylinder length="0.087" radius="0.127"/>
         <!-- sphere radius="${omni_wheel_radius}"/-->
       </geometry>
@@ -394,7 +388,7 @@
     <axis xyz="1 0 0"/>
     <!--origin xyz="0 0 0.2825"/-->
     <origin rpy="0 0 0" xyz="0.127 -0.129 0.212"/>
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="summit_xl_imu_link"/>
   </joint>
   <link name="summit_xl_imu_link">
@@ -418,7 +412,7 @@
   </link>
 
   <joint name="panda_to_world" type="fixed">
-    <parent link="summit_xl_base_link"/>
+    <parent link="base"/>
     <child link="panda_link0"/>
     <origin rpy="0 0 0" xyz="0.2 0 0.5"/> <!--이거 z가 0.5로 받앗엇음-->
   </joint>
@@ -426,18 +420,41 @@
   	<inertial>
       <mass value="0.629769"/>
       <origin xyz="-0.041018 -0.00014 0.049974" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link0.dae"/>
+      </geometry>
       <inertia ixx="0.00315" ixy="0.00388" ixz="0.004285" iyy="8.2904e-7" iyz="0.00015" izz="8.2299e-6"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link0.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
   <link name="panda_link1">
   	<inertial>
       <mass value="4.970684"/>
       <origin xyz="0.003875 0.002081 -0.04762" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link1.dae"/>
+      </geometry>
       <inertia ixx="0.70337" ixy="0.70661" ixz="0.0091170" iyy="-0.00013900" iyz="0.0067720" izz="0.019169"/>
     </inertial>
-    
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link1.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint1" type="revolute">
+  <joint name="joint1" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.7437" soft_upper_limit="2.7437"/>
     <origin rpy="0 0 0" xyz="0 0 0.333"/>
     <parent link="panda_link0"/>
@@ -449,10 +466,22 @@
   	<inertial>
       <mass value="0.646926"/>
       <origin xyz="-0.003141 -0.02872 0.003495" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link2.dae"/>
+      </geometry>
       <inertia ixx="0.0079620" ixy="2.8110e-2" ixz="2.5995e-2" iyy="-3.925e-3" iyz="1.0254e-2" izz="7.04e-4"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link2.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint2" type="revolute">
+  <joint name="joint2" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7837" soft_upper_limit="1.7837"/>
     <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
     <parent link="panda_link1"/>
@@ -464,10 +493,22 @@
 	  <inertial>
       <mass value="3.228604"/>
       <origin xyz="2.7518e-2 3.9252e-2 -6.6502e-2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link3.dae"/>
+      </geometry>
       <inertia ixx="3.7242e-2" ixy="3.6155e-2" ixz="1.083e-2" iyy="-4.761e-3" iyz="-1.1396e-2" izz="-1.2805e-2"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link3.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint3" type="revolute">
+  <joint name="joint3" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.9007" soft_upper_limit="2.9007"/>
     <origin rpy="1.57079632679 0 0" xyz="0 -0.316 0"/>
     <parent link="panda_link2"/>
@@ -479,10 +520,22 @@
   	<inertial>
       <mass value="3.587895"/>
       <origin xyz="-5.317e-2 1.04419e-1 2.7454e-2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link4.dae"/>
+      </geometry>
       <inertia ixx="2.5853e-2" ixy="1.9552e-2" ixz="2.8323e-2" iyy="7.796e-3" iyz="-1.332e-3" izz="8.641e-3"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link4.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint4" type="revolute">
+  <joint name="joint4" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0421" soft_upper_limit="-0.1518"/>
     <origin rpy="1.57079632679 0 0" xyz="0.0825 0 0"/>
     <parent link="panda_link3"/>
@@ -494,10 +547,22 @@
   	<inertial>
       <mass value="1.225946"/>
       <origin xyz="-1.1953e-2 4.1065e-2 -3.8437e-2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link5.dae"/>
+      </geometry>
       <inertia ixx="3.5549e-2" ixy="2.9474e-2" ixz="8.627e-3" iyy="-2.117e-3" iyz="-4.037e-3" izz="2.29e-4"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link5.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint5" type="revolute">
+  <joint name="joint5" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8065" soft_upper_limit="2.8065"/>
     <!-- <safety_controller k_position="100.0" k_velocity="40.0"/> -->
     <origin rpy="-1.57079632679 0 0" xyz="-0.0825 0.384 0"/>
@@ -511,10 +576,22 @@
   	<inertial>
       <mass value="1.666555"/>
       <origin xyz="6.0149e-2 -1.4117e-2 -1.0517e-2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link6.dae"/>
+      </geometry>
       <inertia ixx="1.964e-3" ixy="4.354e-3" ixz="5.433e-3" iyy="1.09e-4" iyz="-1.158e-3" izz="3.41e-4"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link6.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint6" type="revolute">
+  <joint name="joint6" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="0.5445" soft_upper_limit="4.5169"/>
     <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
     <parent link="panda_link5"/>
@@ -526,10 +603,22 @@
   	<inertial>
       <mass value="0.735522"/>
       <origin xyz="1.0517e-2 -4.252e-3 6.1597e-2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link7.dae"/>
+      </geometry>
       <inertia ixx="1.2516e-2" ixy="1.0027e-2" ixz="4.815e-3" iyy="-4.28e-4" iyz="-1.196e-3" izz="-7.41e-4"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/link7.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
-  <joint name="panda_joint7" type="revolute">
+  <joint name="joint7" type="revolute">
     <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0159" soft_upper_limit="3.0159"/>
     <origin rpy="1.57079632679 0 0" xyz="0.088 0 0"/>
     <parent link="panda_link6"/>
@@ -560,22 +649,58 @@
     <inertial>
       <mass value="0.73"/>
       <origin xyz="-0.01 0 0.03" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/hand.dae"/>
+      </geometry>
       <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.0025" iyz="0" izz="0.0017"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/hand.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
   <link name="panda_leftfinger">
     <inertial>
       <mass value="0.015"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/finger.dae"/>
+      </geometry>
       <inertia ixx="2.375e-6" ixy="0" ixz="0" iyy="2.375e-6" iyz="0" izz="7.5e-7"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/finger.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
   <link name="panda_rightfinger">
     <inertial>
       <mass value="0.015"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/finger.dae"/>
+      </geometry>
       <inertia ixx="2.375e-6" ixy="0" ixz="0" iyy="2.375e-6" iyz="0" izz="7.5e-7"/>
     </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mujoco_ros2/models/meshes/visual/finger.dae"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
   </link>
   <joint name="panda_finger_joint1" type="fixed">
   <!-- <joint name="panda_finger_joint1" type="prismatic"> -->
