@@ -7,7 +7,7 @@ def generate_launch_description():
     robot_share_dir = get_package_share_directory('mujoco_ros2')
     robot_urdf = os.path.join(robot_share_dir, 'models', 'fr3_xls.urdf')
 
-    rviz_config = os.path.join(robot_share_dir, 'rviz', 'display.rviz')
+    rviz_config = os.path.join(robot_share_dir, 'config', 'display.rviz')
     
     with open(robot_urdf, 'r') as urdf_file:
         robot_description = urdf_file.read()

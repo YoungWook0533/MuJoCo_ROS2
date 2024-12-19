@@ -27,7 +27,7 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'models'), glob('models/*.*')),
         *meshes_files,  # Add all files from the meshes directory
-        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.*')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

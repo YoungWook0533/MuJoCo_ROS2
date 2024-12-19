@@ -10,9 +10,6 @@ class HolonomicBaseController(Node):
     def __init__(self):
         super().__init__('holonomic_base_controller')
 
-        # Initialize global pose
-        self.global_x = 0.0  # Global x position
-        self.global_y = 0.0  # Global y position
         self.global_theta = 0.0  # Global orientation (in radians)
 
         # Initialize local velocities
@@ -55,14 +52,11 @@ class HolonomicBaseController(Node):
 
     def joint_states_callback(self, msg):
         """Callback to update the global pose from /joint_states."""
-        # Assuming the first three joint positions are x, y, theta
-        self.global_x = msg.position[0]
-        self.global_y = msg.position[1]
+
         self.global_theta = msg.position[2]
 
     def update_state(self):
         """Publish joint velocities."""
-        dt = 0.01  # Time step (10ms)
 
         # Transform velocities into robot's frame
         cos_theta = math.cos(self.global_theta)
@@ -77,12 +71,6 @@ class HolonomicBaseController(Node):
         joint_vel_msg = Float64MultiArray()
         joint_vel_msg.data = [x_dot, y_dot, theta_dot]  # Local velocities
         self.joint_vel_pub.publish(joint_vel_msg)
-
-        # Debug output
-        self.get_logger().info(
-            f"Pose: x={self.global_x:.2f}, y={self.global_y:.2f}, theta={self.global_theta:.2f}, "
-            f"Vel: vx={self.v_x:.2f}, vy={self.v_y:.2f}, vtheta={self.v_theta:.2f}"
-        )
 
 def main(args=None):
     rclpy.init(args=args)

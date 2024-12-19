@@ -7,9 +7,13 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 from sensor_msgs.msg import JointState
+from ament_index_python.packages import get_package_share_directory
+
+package_share_dir = get_package_share_directory('mujoco_ros2')
 
 # Define the YAML file path
-yaml_file_path = "/home/yeonguk/mjpy_ros2_ws/src/MuJoCo_ROS2/mujoco_ros2/config/initial_positions.yaml"
+yaml_file_path = os.path.join(package_share_dir, 'config', 'initial_positions.yaml')
+xml_path = os.path.join(package_share_dir, 'models', 'mobile_fr3_original.xml')
 
 def load_initial_positions(yaml_file):
     """Load initial joint positions from a YAML file."""
@@ -54,7 +58,7 @@ class MujocoSimNode(Node):
         self.create_subscription(Float64MultiArray, '/gripper_command', self.gripper_command_callback, 10)
 
         # Load MuJoCo model and data
-        self.model = mujoco.MjModel.from_xml_path('/home/yeonguk/mjpy_ros2_ws/src/MuJoCo_ROS2/mujoco_ros2/models/mobile_fr3_original.xml')
+        self.model = mujoco.MjModel.from_xml_path(xml_path)
         self.data = mujoco.MjData(self.model)
         self.get_logger().info("MuJoCo simulation node initialized")
 

@@ -9,7 +9,7 @@
 
     <joint name="base_x_slide_joint" type="slide" pos="0 0 0" axis="1 0 0" limited="true" range="-10 10" damping="1"/>              <!--damping="15000"-->
     <joint name="base_y_slide_joint" type="slide" pos="0 0 0" axis="0 1 0" limited="true" range="-10 10" damping="1"/>              <!--damping="15000"-->
-    <joint name="base_z_hinge_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14 3.14" damping="1"/>        <!--damping="10000"-->
+    <joint name="base_z_hinge_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="false" damping="1"/>        <!--damping="10000"-->
 
     <body name="summit_xl_front_right_wheel_link" pos="0.2225 -0.2045 0.127">
     <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="6.5" diaginertia="0.0524193 0.0303095 0.0303095"/>
