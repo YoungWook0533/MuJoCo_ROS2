@@ -41,6 +41,7 @@ setup(
     entry_points={
         'console_scripts': [
             'mujoco_sim = mujoco_ros2.mujoco_sim_node:main',
+            'base_controller = mujoco_ros2.base_controller:main',
         ],
     },
 )

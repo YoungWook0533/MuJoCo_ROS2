@@ -25,6 +25,12 @@ def generate_launch_description():
         output='screen',
     )
 
+    base_controller = Node(
+        package='mujoco_ros2',
+        executable='base_controller',
+        output='screen',
+    )
+
     rviz = Node(
         package='rviz2',
         executable='rviz2',
@@ -36,5 +42,6 @@ def generate_launch_description():
     return LaunchDescription([
         robot_state_publisher,
         mujoco_sim,
+        base_controller,
         rviz
     ])
