@@ -12,28 +12,28 @@
 
   <!-- BASE_LINK -->
   <link name="base_x_slide_link" />
-  <joint name="base_x_slide_joint" type="prismatic">
+  <joint name="base_x_slide_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
       <parent link="base_x_slide_link"/>
       <child link="base_y_slide_link"/>
       <axis xyz= "1 0 0"/>
-      <limit effort="1000.0" lower="-10000.0" upper="-10000.0" velocity="10000.0"/>
+
   </joint>
   <link name="base_y_slide_link" />
-  <joint name="base_y_slide_joint" type="prismatic">
+  <joint name="base_y_slide_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
       <parent link="base_y_slide_link"/>
       <child link="base_z_hinge_link"/>
       <axis xyz= "0 1 0"/>
-      <limit effort="1000.0" lower="-10000.0" upper="-10000.0" velocity="10000.0"/>
+
   </joint>
   <link name="base_z_hinge_link" />
-  <joint name="base_z_hinge_joint" type="revolute">
+  <joint name="base_z_hinge_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
       <parent link="base_z_hinge_link"/>
       <child link="base"/>
       <axis rpy="0 0 0" xyz="0 0 1"/>
-      <limit effort="1000.0" lower="-6.24" upper="6.24" velocity="10000.0"/>
+
   </joint>
   <link name="base">
     <inertial>

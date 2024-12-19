@@ -29,7 +29,7 @@ setup(
         *meshes_files,  # Add all files from the meshes directory
         (os.path.join('share', package_name, 'config'), glob('config/*.*')),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'pin'],
     zip_safe=True,
     maintainer='kimyeonguk',
     maintainer_email='kimyeonguk@gmail.com',
@@ -42,6 +42,7 @@ setup(
         'console_scripts': [
             'mujoco_sim = mujoco_ros2.mujoco_sim_node:main',
             'base_controller = mujoco_ros2.base_controller:main',
+            'fr3_position_control = mujoco_ros2.fr3_position_control:main',
         ],
     },
 )

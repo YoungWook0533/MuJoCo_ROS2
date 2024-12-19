@@ -222,3 +222,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+# ros2 topic pub /manipulator_commands std_msgs/msg/Float64MultiArray "data: [5.0, 5.0, 5.0, 5.0, -5.0, 5.0, 5.0]" --once
