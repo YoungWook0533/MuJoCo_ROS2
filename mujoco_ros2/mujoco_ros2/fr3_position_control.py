@@ -11,7 +11,7 @@ class JointPositionControlNode(Node):
         super().__init__('inverse_dynamics_position_control_node')
 
         # Load the URDF model into Pinocchio
-        urdf_path = "/home/yeonguk/mjpy_ros2_ws/src/MuJoCo_ROS2/mujoco_ros2/models/fr3_xls_pinocchio.urdf"  # Update the URDF path
+        urdf_path = "/home/yeonguk/mjpy_ros2_ws/src/MuJoCo_ROS2/mujoco_ros2/models/fr3_xls_pinocchio.urdf"
         self.robot = pin.buildModelFromUrdf(urdf_path)
         self.data = self.robot.createData()
 
@@ -28,10 +28,10 @@ class JointPositionControlNode(Node):
         self.torques = np.zeros(self.num_joints)  # Computed joint torques
 
         # Control gains (adjust gains for specific joints)
-        self.Kp = np.array([100.0, 100.0, 100.0, 100.0, 1000.0, 1000.0, 5000.0])  # Proportional gains
-        self.Kv = np.array([50.0, 50.0, 50.0, 50.0, 100.0, 100.0, 1000.0])         # Derivative gains
+        self.Kp = np.array([100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0])  # Proportional gains
+        self.Kv = np.array([50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0])         # Derivative gains
 
-        # Desired state
+        # Desired state initialized with initial state
         self.q_desired = np.array([
             0.0,                  # joint1
             -0.785398163397,      # joint2
@@ -46,11 +46,12 @@ class JointPositionControlNode(Node):
 
         # Subscribers
         self.create_subscription(JointState, "/joint_states", self.joint_states_callback, 10)
+        self.create_subscription(Float64MultiArray, "/position_command", self.position_command_callback, 10)
 
         # Publisher to /manipulator_commands
         self.torque_pub = self.create_publisher(Float64MultiArray, "/manipulator_commands", 10)
 
-        # Timer to compute and publish torques at 100 Hz
+        # Compute and publish torques at 1000 Hz
         self.timer = self.create_timer(0.001, self.compute_and_publish_torques)
 
         self.get_logger().info("Inverse Dynamics Position Control Node initialized.")
@@ -65,13 +66,22 @@ class JointPositionControlNode(Node):
         except ValueError as e:
             self.get_logger().warn(f"Joint {name} not found in /joint_states: {e}")
 
+    def position_command_callback(self, msg):
+        """Callback to update desired joint positions directly."""
+        if len(msg.data) != self.num_joints:
+            self.get_logger().warn("Received position command with invalid joint count.")
+            return
+
+        # Update the desired joint positions
+        self.q_desired = np.array(msg.data)
+
     def compute_and_publish_torques(self):
         """Compute inverse dynamics torques for position control."""
         # Compute position and velocity errors
         q_error = self.q_desired - self.q
         q_dot_error = self.q_dot_desired - self.q_dot
 
-        # PD control law to compute desired accelerations
+        # PD control to compute desired accelerations
         self.q_ddot = self.Kp * q_error + self.Kv * q_dot_error + self.q_ddot_desired
 
         # Compute the mass matrix
@@ -83,18 +93,13 @@ class JointPositionControlNode(Node):
         # Compute gravity forces
         g = pin.computeGeneralizedGravity(self.robot, self.data, self.q)
 
-        # Compute torques using the equation: τ = M * q_ddot + C * q_dot + g
+        # Compute torques
         self.torques = M @ self.q_ddot + C @ self.q_dot + g
 
         # Publish torques
         torque_msg = Float64MultiArray()
         torque_msg.data = self.torques.tolist()
         self.torque_pub.publish(torque_msg)
-
-        # Debug output
-        self.get_logger().info(f"q_error: {q_error}, q_dot_error: {q_dot_error}, "
-                            f"q_ddot: {self.q_ddot}, Mass matrix diagonal: {np.diag(M)}, "
-                            f"Gravity: {g}, Coriolis: {C}, torques: {self.torques}")
 
 
 def main(args=None):
@@ -112,3 +117,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
